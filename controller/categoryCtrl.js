@@ -22,6 +22,23 @@ const categoryCtrl = {
         } catch (err) {
             return res.status(500).json({msg:err.message})
         }
+    },
+    deleteCategory: async (req,res) => {
+        try {
+            await Category.findByIdAndDelete(req.params.id)
+            res.json('Deleted a category')
+        } catch (err) {
+            return res.status(500).json({msg:err.message})
+        }
+    },
+    updateCategory: async (req,res) => {
+        try {
+            const {name} = req.body;
+            await Category.findOneAndUpdate({_id: req.params.id},{name})
+            res.json('Updated a category')
+        } catch (err) {
+            return res.status(500).json({msg:err.message})
+        }
     }
 }
 
