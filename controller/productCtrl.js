@@ -16,15 +16,32 @@ class ApiFeatures {
         
         return this;
     }
-    sorting(){}
-    paginating(){}
+    sorting(){
+        if(this.queryString.sort){
+            const sortBy = this.queryString.sort.split(',').join(' ')
+            this.query = this.query.sort(sortBy)
+        }else{
+            this.query = this.query.sort(('-createdAt'))
+        }
+        return this
+    }
+    paginating(){
+        const page = this.queryString.page *1||1
+        const limit = this.queryString.page *1||3
+        const skip = (page-1)*limit;
+        this.query=this.query.skip(skip).limit(limit)
+        return this
+    }
 }
 const productCtrl = {
     getProduct: async (req,res) => {
         try {
-            const features = new ApiFeatures(Products.find(), req.query).filtering()
+            const features = new ApiFeatures(Products.find(), req.query).filtering().sorting().paginating()
             const product = await features.query
-            res.json(product)
+            res.json({
+                status:"success",
+                result: product.length,
+                products: product})
         } catch (err) {
             return res.status(500).json({msg:err.message})
         }
