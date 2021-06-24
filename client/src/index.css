@@ -37,3 +37,5 @@ button{
 @import url("./Components/Header/Header.css"); 
 /* ~~~~~~~~~~~~~~~~~~~~~ Products ~~~~~~~~~~~~~~~~~~~~~~ */
 @import url("./Components/MainPages/products/Products.css");
+/* ~~~~~~~~~~~~~~~~~~~~~ Detail Products ~~~~~~~~~~~~~~~~~ */
+@import url("./Components/MainPages/DetailProducts/DetailProduct.css");

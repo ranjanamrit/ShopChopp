@@ -14,7 +14,7 @@ export default function productItems({product}) {
                 <Link id="btn-buy" to="#!">
                     Buy
                 </Link>
-                <Link id="btn-view" to={`details/${product._id}`}>
+                <Link id="btn-view" to={`/details/${product._id}`}>
                     View
                 </Link>
             </div>
