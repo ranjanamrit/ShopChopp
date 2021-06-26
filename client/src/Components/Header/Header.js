@@ -6,7 +6,26 @@ import Close from './icons/cross.svg'
 import { Link } from 'react-router-dom'
 
 export default function Header() {
-    const value = useContext(GlobalState)
+    const state = useContext(GlobalState)
+    const [isLogged, setisLogged] = state.UserAPI.isLogged
+    const [isAdmin, setisAdmin] = state.UserAPI.isAdmin
+
+    const adminRouter = () => {
+        return(
+            <>
+                <li><Link to='/create_product'>Create Products</Link></li>
+                <li><Link to='/category'>Categories</Link></li>
+            </>
+        )
+    }
+    const logRouter = () => {
+        return(
+            <>
+                <li><Link to='/history'>History</Link></li>
+                <li><Link to='/'>Logout</Link></li>
+            </>
+        )
+    }
     return (
         <header>
             <div className='menu'>
@@ -14,7 +33,8 @@ export default function Header() {
             </div>
             <div className='logo'>
                 <h1>
-                    <Link to="/">ShopChop</Link>
+                    <Link to="/">ShopChop<span>{isAdmin?'ADMIN':null}</span></Link>
+                    
                 </h1>
             </div>
             <ul>

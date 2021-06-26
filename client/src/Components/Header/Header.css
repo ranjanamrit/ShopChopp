@@ -12,6 +12,10 @@ header{
 header .logo{
     flex: 1;
 }
+header .logo span {
+    font-size: 0.6rem;
+    color: peru;
+}
 header a{
     text-transform: uppercase;
     color: #555;
