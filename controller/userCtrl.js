@@ -19,7 +19,6 @@ const userCtrl = {
                 name,email,password:passwordHash
             })
             await newUser.save()
-
             const accessToken = createAccessToken({id:newUser._id})
             const refreshToken = createRefreshToken({id:newUser._id})
 
@@ -27,6 +26,7 @@ const userCtrl = {
                 httpOnly: true,
                 path: '/user/refresh_token'
             })
+            res.json({accessToken})
         }
         catch(err){
             return res.status(500).json({msg: err.message})

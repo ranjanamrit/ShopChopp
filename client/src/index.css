@@ -39,3 +39,5 @@ button{
 @import url("./Components/MainPages/products/Products.css");
 /* ~~~~~~~~~~~~~~~~~~~~~ Detail Products ~~~~~~~~~~~~~~~~~ */
 @import url("./Components/MainPages/DetailProducts/DetailProduct.css");
+/* ~~~~~~~~~~~~~~~~~~~~~~Login ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+@import url("./Components/MainPages/auth/Login.css");

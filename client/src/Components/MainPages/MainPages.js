@@ -15,8 +15,8 @@ export default function MainPages() {
                 <Route path='/' exact component={Products}></Route>
                 <Route path="/details/:id" exact component={detailProduct}></Route>
                 <Route path='/cart' exact component={Cart}></Route>
-                <Route path='/register' exact component={Register}></Route>
                 <Route path='/login' exact component={Login}></Route>
+                <Route path='/register' exact component={Register}></Route>
                 <Route path='*' exact component={NotFound}></Route>
             </Switch>
         </div>
