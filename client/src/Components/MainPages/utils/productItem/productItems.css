@@ -58,3 +58,8 @@
     background: teal;
     margin-right: 5px;
 }
+.product-card input{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}

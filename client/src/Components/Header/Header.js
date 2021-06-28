@@ -4,11 +4,19 @@ import Menu from './icons/menu.svg'
 import Cart from './icons/cart.svg'
 import Close from './icons/cross.svg'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 export default function Header() {
     const state = useContext(GlobalState)
     const [isLogged, setisLogged] = state.UserAPI.isLogged
     const [isAdmin, setisAdmin] = state.UserAPI.isAdmin
+    const [cart] = state.UserAPI.cart
+
+    const logoutUser = async () => {
+        await axios.get('/user/logout')
+        localStorage.clear()
+        window.location.href='/'
+    }
 
     const adminRouter = () => {
         return(
@@ -22,7 +30,7 @@ export default function Header() {
         return(
             <>
                 <li><Link to='/history'>History</Link></li>
-                <li><Link to='/'>Logout</Link></li>
+                <li><Link to='/' onClick={logoutUser}>Logout</Link></li>
             </>
         )
     }
@@ -38,19 +46,24 @@ export default function Header() {
                 </h1>
             </div>
             <ul>
-                <li><Link to="/">Products</Link></li>
-                <li><Link to="/login">Login/Register</Link></li>
+                <li><Link to="/">{isAdmin ? "Products" : "Shop"}</Link></li>
+                {isAdmin && adminRouter()}
+                {
+                    isLogged ? logRouter() : <li><Link to="/login">Login/Register</Link></li>
+                }
                 <li>
                     <img src={Close} alt="" width="30" className="menu"></img>
                 </li>
             </ul>
-
+            {
+            isAdmin ? '':
             <div className="cart-icon">
-                <span>0</span>
+                <span>{cart.length}</span>
                 <Link to="/cart">
                     <img src={Cart} alt="" width="30"></img>                
                 </Link>
             </div>
+            }
         </header>
     )
 }

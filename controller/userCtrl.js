@@ -85,6 +85,19 @@ const userCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
+    },
+    addCart: async (req,res) => {
+        try {
+            const user = await Users.findById(req.user.id)
+            if(!user) return res.status(400).json("User does not exist")
+
+            await Users.findOneAndUpdate({_id:req.user.id},{
+                cart:req.body.cart
+            })
+            res.json({msg:"Added to cart"})
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
     }
 }
 const createAccessToken = (user) => {
