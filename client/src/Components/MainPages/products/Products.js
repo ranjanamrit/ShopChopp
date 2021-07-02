@@ -1,5 +1,4 @@
 import React,{useContext} from 'react'
-import UserAPI from '../../../api/UserAPI'
 import { GlobalState } from '../../../globalState'
 import Loading from '../utils/Loading/Loading'
 import ProductItems from '../utils/productItem/productItems'

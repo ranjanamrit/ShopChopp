@@ -1,9 +1,11 @@
 import React,{useContext,useState,useEffect} from 'react'
 import {GlobalState} from '../../../globalState'
-import {Link} from 'react-router-dom'
+import axios from 'axios'
+import PaypalButton from './PaypalButton'
 
 export default function Cart() {
     const state = useContext(GlobalState)
+    const [token] = state.token
     const [cart,setcart] = state.UserAPI.cart
     const [total, settotal] = useState(0)
 
@@ -17,6 +19,11 @@ export default function Cart() {
         getTotal()
     },[cart])
 
+    const addToCart = async (cart) => {
+        await axios.patch('/user/addcart',{cart},{
+            headers: {Authorization:token}
+        })
+    }
     const increment = (id) => {
         cart.forEach(item => {
             if(item._id===id){
@@ -24,6 +31,7 @@ export default function Cart() {
             }
         });
         setcart([...cart])
+        addToCart(cart)
     }
     const decrement = (id) => {
         cart.forEach(item => {
@@ -32,8 +40,8 @@ export default function Cart() {
             }
         });
         setcart([...cart])
+        addToCart(cart)
     }
-
     const removeProduct = id => {
         if(window.confirm("Do you want to delete this product?")){
             cart.forEach((item,index) => {
@@ -42,7 +50,19 @@ export default function Cart() {
                 }
             });
             setcart([...cart])
+            addToCart(cart)
         }
+    }
+    const transSuccess = async (payment) => {
+        const {paymentID,address} = payment
+
+        await axios.post('/api/payment',{cart,paymentID,address},{
+            headers: {Authorization:token}
+        })
+
+        setcart([])
+        addToCart([])
+        alert("You have successfully placed an order")
     }
     if(cart.length === 0){
         return <h2 style={{textAlign:'center', fontSize:'5rem'}}>Cart Empty</h2>
@@ -70,7 +90,7 @@ export default function Cart() {
             }
             <div className="total">
                 <h3>Total: ₹ {total} </h3>
-                <Link to='#!'>Payment</Link>
+                <PaypalButton total={total} transSuccess={transSuccess}/>
             </div>
         </div>
     )
