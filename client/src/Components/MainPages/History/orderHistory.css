@@ -23,3 +23,9 @@ th, td{
 table a{
     color: rgb(3, 165, 206);
 }
+.history-page img{
+    width: 70px;
+    height: 100px;
+    object-fit: cover;
+    
+}
