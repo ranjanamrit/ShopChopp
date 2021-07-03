@@ -7,6 +7,7 @@ export default function Cart() {
     const state = useContext(GlobalState)
     const [token] = state.token
     const [cart,setcart] = state.UserAPI.cart
+    const [callBack,setcallBack] = state.UserAPI.callBack
     const [total, settotal] = useState(0)
 
     useEffect(() => {
@@ -63,6 +64,7 @@ export default function Cart() {
         setcart([])
         addToCart([])
         alert("You have successfully placed an order")
+        setcallBack(!callBack)
     }
     if(cart.length === 0){
         return <h2 style={{textAlign:'center', fontSize:'5rem'}}>Cart Empty</h2>

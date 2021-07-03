@@ -1,4 +1,4 @@
-import React, { useContext , useState } from 'react'
+import React, {useContext} from 'react'
 import {GlobalState} from '../../globalState'
 import Menu from './icons/menu.svg'
 import Cart from './icons/cart.svg'
@@ -8,8 +8,8 @@ import axios from 'axios'
 
 export default function Header() {
     const state = useContext(GlobalState)
-    const [isLogged, setisLogged] = state.UserAPI.isLogged
-    const [isAdmin, setisAdmin] = state.UserAPI.isAdmin
+    const [isLogged] = state.UserAPI.isLogged
+    const [isAdmin] = state.UserAPI.isAdmin
     const [cart] = state.UserAPI.cart
 
     const logoutUser = async () => {

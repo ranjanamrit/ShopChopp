@@ -1,10 +1,12 @@
 import axios from 'axios'
-import React,{useState,useEffect} from 'react'
+import {useState,useEffect} from 'react'
 
 export default function UserAPI(token) {
     const [isLogged, setisLogged] = useState(false)
     const [isAdmin, setisAdmin] = useState(false)
     const [cart, setcart] = useState([])
+    const [history, sethistory] = useState([])
+    const [callBack, setcallBack] = useState(false)
 
     useEffect(() => {
         if(token){
@@ -24,7 +26,17 @@ export default function UserAPI(token) {
             getUser() 
         }
     },[token])
-
+    useEffect(() => {
+        if(token){
+            const getHistory = async() => {
+                const res = await axios.get('/user/history',{
+                    headers: {Authorization : token}
+                })
+                sethistory(res.data)
+            }
+            getHistory()
+        }
+    },[token, callBack])
     const addCart = async (product) => {
         if(!isLogged) return alert("Please login to continue shopping in ShopChop")
 
@@ -45,6 +57,8 @@ export default function UserAPI(token) {
         isLogged : [isLogged, setisLogged],
         isAdmin : [isAdmin, setisAdmin],
         cart: [cart,setcart],
-        addCart: addCart
+        addCart: addCart,
+        history: [history, sethistory],
+        callBack: [callBack, setcallBack]
     }
 }

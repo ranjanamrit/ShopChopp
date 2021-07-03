@@ -44,3 +44,5 @@ button{
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~Cart ~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 @import url("./Components/MainPages/cart/Cart.css");
+/* ~~~~~~~~~~~~~~~~~~~~~~~History ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+@import url("./Components/MainPages/History/orderHistory.css");

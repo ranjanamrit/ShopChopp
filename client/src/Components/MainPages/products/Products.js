@@ -3,7 +3,7 @@ import { GlobalState } from '../../../globalState'
 import Loading from '../utils/Loading/Loading'
 import ProductItems from '../utils/productItem/productItems'
 
-export default function () {
+export default function Products() {
     const state = useContext(GlobalState)
     const [products] = state.ProductAPI.products
     const [isAdmin] = state.UserAPI.isAdmin

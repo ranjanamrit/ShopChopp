@@ -6,6 +6,7 @@ import Register from './auth/Register'
 import Cart from './cart/Cart'
 import detailProduct from './DetailProducts/DetailProduct'
 import Products from './products/Products'
+import OrderHistory from './History/orderHistory'
 import NotFound from './utils/not_found/NotFound'
 
 export default function MainPages() {
@@ -19,6 +20,8 @@ export default function MainPages() {
                 <Route path='/cart' exact component={Cart}></Route>
                 <Route path='/login' exact component={isLogged ? NotFound:Login}></Route>
                 <Route path='/register' exact component={isLogged ? NotFound:Register}></Route>
+                <Route path='/history' exact component={isLogged ? OrderHistory: NotFound}></Route>
+                <Route path='/history/:id' exact component={isLogged ? OrderHistory: NotFound}></Route>
                 <Route path='*' exact component={NotFound}></Route>
             </Switch>
         </div>
