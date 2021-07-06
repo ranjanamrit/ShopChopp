@@ -18,7 +18,7 @@ const categoryCtrl = {
             const newCategory = new Category({name})
 
             await newCategory.save()
-            res.json('Created a category')
+            res.json({msg:`Created a category ${newCategory.name}`})
         } catch (err) {
             return res.status(500).json({msg:err.message})
         }
@@ -26,7 +26,7 @@ const categoryCtrl = {
     deleteCategory: async (req,res) => {
         try {
             await Category.findByIdAndDelete(req.params.id)
-            res.json('Deleted a category')
+            res.json({msg:'Category deleted successfully'})
         } catch (err) {
             return res.status(500).json({msg:err.message})
         }
@@ -35,7 +35,7 @@ const categoryCtrl = {
         try {
             const {name} = req.body;
             await Category.findOneAndUpdate({_id: req.params.id},{name})
-            res.json('Updated a category')
+            res.json({msg:'Category updated successfully'})
         } catch (err) {
             return res.status(500).json({msg:err.message})
         }

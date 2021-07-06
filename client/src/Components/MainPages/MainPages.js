@@ -9,10 +9,12 @@ import Products from './products/Products'
 import OrderHistory from './History/orderHistory'
 import OrderDetails from './History/orderDetails'
 import NotFound from './utils/not_found/NotFound'
+import Categories from './categories/Categories'
 
 export default function MainPages() {
     const state = useContext(GlobalState)
     const [isLogged]=state.UserAPI.isLogged
+    const [isAdmin] = state.UserAPI.isAdmin
     return (
         <div>
             <Switch>
@@ -21,6 +23,7 @@ export default function MainPages() {
                 <Route path='/cart' exact component={Cart}></Route>
                 <Route path='/login' exact component={isLogged ? NotFound:Login}></Route>
                 <Route path='/register' exact component={isLogged ? NotFound:Register}></Route>
+                <Route path='/category' exact component={isAdmin ? Categories: NotFound}></Route>
                 <Route path='/history' exact component={isLogged ? OrderHistory: NotFound}></Route>
                 <Route path='/history/:id' exact component={isLogged ? OrderDetails: NotFound}></Route>
                 <Route path='*' exact component={NotFound}></Route>

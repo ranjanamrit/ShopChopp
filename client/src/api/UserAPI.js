@@ -29,14 +29,21 @@ export default function UserAPI(token) {
     useEffect(() => {
         if(token){
             const getHistory = async() => {
+                if(isAdmin){
+                    const res = await axios.get('/api/payment',{
+                        headers: {Authorization : token}
+                    })
+                    sethistory(res.data)
+                }else{
                 const res = await axios.get('/user/history',{
                     headers: {Authorization : token}
                 })
                 sethistory(res.data)
             }
+        }
             getHistory()
         }
-    },[token, callBack])
+    },[token, callBack, isAdmin])
     const addCart = async (product) => {
         if(!isLogged) return alert("Please login to continue shopping in ShopChop")
 
