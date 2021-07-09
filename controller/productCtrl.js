@@ -55,12 +55,12 @@ const productCtrl = {
             if(product) return res.status(400).json({msg:"Product already exist"})
 
             const newProduct = new Products({
+                images,
                 product_id,
                 title: title.toLowerCase(),
                 price,
                 description,
                 content,
-                images,
                 category
             })
             await newProduct.save()

@@ -1,11 +1,34 @@
-import React,{useContext} from 'react'
+import axios from 'axios'
+import React,{useContext,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { GlobalState } from '../../../globalState'
 
 
 export default function History() {
     const state = useContext(GlobalState)
-    const [history] = state.UserAPI.history
+    const [history, sethistory] = state.UserAPI.history
+    const [token]=state.token
+    const [isAdmin]=state.UserAPI.isAdmin
+
+    useEffect(() => {
+        if(token){
+            const getHistory = async () => {
+                if(isAdmin){
+                    const res = await axios.get('/api/payment',{
+                        headers: {Authorization : token}
+                    })
+                    sethistory(res.data)
+                }else{
+                const res = await axios.get('/user/history',{
+                    headers: {Authorization : token}
+                })
+                sethistory(res.data)
+            }
+        }
+        getHistory()
+        }
+    },[token,isAdmin,sethistory])
+
     return (
         <div className="history-page">
             <h2>History</h2>

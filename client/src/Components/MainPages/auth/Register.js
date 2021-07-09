@@ -16,7 +16,7 @@ export default function Register() {
         e.preventDefault()
         try {
             await axios.post("/user/register",{...user})
-            localStorage.setItem("FirstLogin",true)
+         localStorage.setItem("FirstLogin",true)
             window.location.href="/"
 
         } catch (err) {
