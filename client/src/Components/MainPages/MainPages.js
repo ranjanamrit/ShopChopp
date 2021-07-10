@@ -26,6 +26,7 @@ export default function MainPages() {
                 <Route path='/register' exact component={isLogged ? NotFound:Register}></Route>
                 <Route path='/category' exact component={isAdmin ? Categories: NotFound}></Route>
                 <Route path='/create_product' exact component={isAdmin ? Createproduct: NotFound}></Route>
+                <Route path='/edit_product/:id' exact component={isAdmin ? Createproduct: NotFound}></Route>
                 <Route path='/history' exact component={isLogged ? OrderHistory: NotFound}></Route>
                 <Route path='/history/:id' exact component={isLogged ? OrderDetails: NotFound}></Route>
                 <Route path='*' exact component={NotFound}></Route>

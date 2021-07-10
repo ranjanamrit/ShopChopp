@@ -1,8 +1,8 @@
 import axios from 'axios'
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import { GlobalState } from '../../../globalState'
 import Loading from '../utils/Loading/Loading'
-import {useHistory} from 'react-router-dom'
+import {useHistory,useParams} from 'react-router-dom'
 
 const initialState ={
     product_id:'',
@@ -10,7 +10,8 @@ const initialState ={
     price: 0,
     description: 'Cool set of product with wide variety of range',
     content: 'ShopChop contains each and every luxurious product for your luxurious life',
-    category: ''
+    category: '',
+    _id:''
 }
 
 export default function Createproduct() {
@@ -22,6 +23,26 @@ export default function Createproduct() {
     const [isAdmin] = state.UserAPI.isAdmin
     const [token]= state.token
     const history = useHistory()
+    const params = useParams()
+    const [onEdit,setonEdit] = useState(false)
+    const [callBack,setcallBack] = state.ProductAPI.callBack
+
+    const [products] = state.ProductAPI.products
+    useEffect(() => {
+        if(params.id){
+            setonEdit(true)
+            products.forEach(product => {
+                if(product._id===params.id){ 
+                setproduct(product)
+                setimages(product.images)
+                }
+            });
+        }else{
+            setonEdit(false)
+            setproduct(initialState)
+            setimages(false)
+        }
+    },[params.id,products])
 
     const onHandleUpload = async e => {
         e.preventDefault()
@@ -67,13 +88,18 @@ export default function Createproduct() {
         try {
             if(!isAdmin) return alert("You are not authorized to do this")
             if(!images) return alert("No image uploaded")
-
-            const res = await axios.post('/api/products',{...product,images},{
-                headers:{Authorization:token}
-            })
-            alert(res.data.msg)
-            setproduct(initialState)
-            setimages(false)
+            if(onEdit){
+                const res = await axios.put(`/api/products/${product._id}`,{...product,images},{
+                    headers:{Authorization:token}
+                })
+                alert(res.data.msg)
+            }else{
+                const res = await axios.post('/api/products',{...product,images},{
+                    headers:{Authorization:token}
+                })
+                alert(res.data.msg)
+            }
+            setcallBack(!callBack)
             history.push('/')
         } catch (err) {
             alert(err.response.data.msg)
@@ -98,7 +124,7 @@ export default function Createproduct() {
                 <div className="row">
                     <label htmlFor="product_id">Product ID</label>
                     <input type="text" name="product_id" id="product_id" required
-                    value={product.product_id} onChange={onHandleChageInput}/>
+                    value={product.product_id} onChange={onHandleChageInput} disabled={onEdit}/>
                 </div>
                 <div className="row">
                     <label htmlFor="title">Title</label>
@@ -133,7 +159,7 @@ export default function Createproduct() {
                         }
                     </select>
                 </div>
-                <button type="submit">Create</button>
+                <button type="submit">{onEdit?'Update':'Create'}</button>
             </form>
         </div>
     )
