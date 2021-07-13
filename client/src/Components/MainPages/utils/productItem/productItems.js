@@ -3,7 +3,7 @@ import React,{useState} from 'react'
 import Loading from '../Loading/Loading'
 import BtnRender from './BtnRender'
 
-export default function ProductItems({product,isAdmin,token,callBack,setcallBack}) {
+export default function ProductItems({product,isAdmin,token,callBack,setcallBack,setProducts}) {
     const [loading,setLoading] = useState(false)
     const deleteItem = async () => {
         try {
@@ -24,8 +24,9 @@ export default function ProductItems({product,isAdmin,token,callBack,setcallBack
     }
 
     const handleCheck = () => {
-        product.checked = !product.checked
-        
+        let newProduct = [...product]
+        newProduct.checked = !newProduct.checked
+        setProducts(newProduct)
     }
     if(loading) return <div className="product-card">  <Loading/> </div>
     return (
