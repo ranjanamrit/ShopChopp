@@ -12,7 +12,7 @@ export default function BtnRender({product,deleteItem}) {
                 {
                     isAdmin ? 
                     <>
-                        <Link id="btn-buy" onClick={deleteItem}>
+                        <Link id="btn-buy" onClick={()=>deleteItem(product._id,product.images.public_id)}>
                             Delete
                         </Link>
                         <Link id="btn-view" to={`/edit_product/${product._id}`}>
