@@ -36,7 +36,8 @@ class ApiFeatures {
 const productCtrl = {
     getProduct: async (req,res) => {
         try {
-            const features = new ApiFeatures(Products.find(), req.query).filtering().sorting().paginating()
+            const features = new ApiFeatures(Products.find(), req.query)
+            .filtering().sorting().paginating()
             const product = await features.query
             res.json({
                 status:"success",

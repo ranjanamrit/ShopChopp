@@ -3,6 +3,7 @@ import React,{useContext,useState} from 'react'
 import { GlobalState } from '../../../globalState'
 import Loading from '../utils/Loading/Loading'
 import ProductItems from '../utils/productItem/productItems'
+import Filter from './Filter'
 
 export default function Products() {
     const state = useContext(GlobalState)
@@ -53,6 +54,7 @@ export default function Products() {
     if(loading) return <div> <Loading></Loading></div>
     return (
         <>
+        <Filter/>
         {
             isAdmin &&
             <div className="delete-all">
