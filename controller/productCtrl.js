@@ -6,12 +6,15 @@ class ApiFeatures {
     }
     filtering(){
         const queryObject = {...this.queryString}
+        console.log({before: queryObject})
 
-        const excludedFields = ['page','sort','limits']
+        const excludedFields = ['page','sort','limit']
         excludedFields.forEach(el=>delete(queryObject[el]))
 
         let queryStr= JSON.stringify(queryObject)
         queryStr=queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g,match=> '$' + match)
+
+        console.log({queryStr})
         this.query.find(JSON.parse(queryStr))
         
         return this;
@@ -38,6 +41,7 @@ const productCtrl = {
         try {
             const features = new ApiFeatures(Products.find(), req.query)
             .filtering().sorting().paginating()
+
             const product = await features.query
             res.json({
                 status:"success",
