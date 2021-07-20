@@ -5,13 +5,13 @@ import { GlobalState } from '../../../globalState'
 export default function Filter() {
     const state = useContext(GlobalState)
     const [categories] = state.CategoriesAPI.categories
-    const [products,setProducts] = state.ProductAPI.products
     const [category,setCategory] = state.ProductAPI.category
     const [sort, setSort] = state.ProductAPI.sort
     const [search, setSearch] = state.ProductAPI.search
 
     const handleCategory = e => {
         setCategory(e.target.value)
+        setSearch('')
     }
     return (
         <div className="filter-menu">
@@ -26,6 +26,18 @@ export default function Filter() {
                     }
                 </select>
             </div>
+            <input type="text" value={search} placeholder="Enter your search" onChange={e => setSearch(e.target.value.toLowerCase())}/>
+            <div className="row sort">
+                <span>Sort By:</span>
+                <select value={sort} onChange={e => setSort(e.target.value)}>
+                    <option value="">All product</option>
+                    <option value="sort=oldest">Oldest</option>
+                    <option value="sort=-sold">Best Sale</option>
+                    <option value="sort=-price">Price: High-Low</option>
+                    <option value="sort=price">Price: Low-high</option>
+                </select>
+            </div>
         </div>
+
     )
 }

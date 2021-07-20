@@ -4,6 +4,7 @@ import { GlobalState } from '../../../globalState'
 import Loading from '../utils/Loading/Loading'
 import ProductItems from '../utils/productItem/productItems'
 import Filter from './Filter'
+import LoadMore from './LoadMore'
 
 export default function Products() {
     const state = useContext(GlobalState)
@@ -72,6 +73,7 @@ export default function Products() {
                 })
             }
         </div>
+            <LoadMore/>
         {products.length===0 && <Loading/>}
         </>
     )
