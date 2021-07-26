@@ -6,6 +6,10 @@
     box-shadow: 0 0 15px #ddd;
     margin: 10px 0;
     position: relative;
+    transition: transform 1s;
+}
+.product-card:hover{
+    transform: scale(1.05);
 }
 .product-card img{
     width: 100%;

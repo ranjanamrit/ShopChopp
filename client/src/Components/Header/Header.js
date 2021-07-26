@@ -47,7 +47,6 @@ export default function Header() {
             <div className='logo'>
                 <h1>
                     <Link to="/">ShopChop<span>{isAdmin?'ADMIN':null}</span></Link>
-                    
                 </h1>
             </div>
             <ul style={styleMenu}>

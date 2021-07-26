@@ -1,27 +1,33 @@
 import React from 'react'
-import './Loadiing.css'
+import './Loadiing.scss'
 
 function Loading() {
     return (
-        <div className="load-page">
-            <div className="loader">
-                <div>
-                    <div>
-                        <div>
-                            <div>
-                                <div>
-                                    <div>
-                                        <div>
-                                            <div></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <>
+        <div className="dots">
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+	</div>
+
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<filter id="goo">
+				<feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="9" />
+				<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -7" result="goo" />
+				<feBlend in2="goo" in="SourceGraphic" result="mix" />
+			</filter>
+		</defs>
+	</svg>
+    </>
     )
 }
 
