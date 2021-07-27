@@ -34,10 +34,10 @@ export default function DetailProduct() {
                 <p>{detailProduct.description}</p>
                 <p>{detailProduct.content}</p>
                 <p><span>Sold: {detailProduct.sold}</span></p>
-                <Link to="/cart" className="cart" onClick={() => addCart(detailProduct)}>Buy Now</Link>
+                <Link to="/cart" id = "btn-buy"className="cart" onClick={() => addCart(detailProduct)}>Buy Now</Link>
             </div>
         </div>
-        <div>
+        <div className="related">
                 <h2>Related products</h2>
                 <div className="products">
                     {

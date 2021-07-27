@@ -32,7 +32,7 @@ button{
   background: transparent;
   cursor: pointer;
 }
-@import url('https://fonts.googleapis.com/css2?family=Fuggles&family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fuggles&family=Montserrat:wght@500&display=swap');
 /* ~~~~~~~~~~~~~~~~~~~~~ Header ~~~~~~~~~~~~~~~~~~~~~~ */
 @import url("./Components/Header/Header.css"); 
 /* ~~~~~~~~~~~~~~~~~~~~~ Products ~~~~~~~~~~~~~~~~~~~~~~ */

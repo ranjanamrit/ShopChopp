@@ -16,7 +16,7 @@ export default function Filter() {
     return (
         <div className="filter-menu">
             <div className="row">
-                <span>Filters:</span>
+                <span>Filters </span>
                 <select name="category" value={category} onChange={handleCategory}>
                     <option value="">All product</option>
                     {
@@ -28,7 +28,7 @@ export default function Filter() {
             </div>
             <input type="text" value={search} placeholder="Enter your search" onChange={e => setSearch(e.target.value.toLowerCase())}/>
             <div className="row sort">
-                <span>Sort By:</span>
+                <span>Sort By </span>
                 <select value={sort} onChange={e => setSort(e.target.value)}>
                     <option value="">All product</option>
                     <option value="sort=oldest">Oldest</option>

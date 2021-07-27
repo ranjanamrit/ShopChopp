@@ -40,13 +40,22 @@
     align-items: center;
     flex-wrap: wrap;
     margin: 15px 0;
+    color: #ffffff;
+}
+.filter-menu .row span{
+    font-family: 'Montserrat', sans-serif;
 }
 .filter-menu select, input{
-    border: 1px solid #ccc;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
     outline: none;
     height: 40px;
     padding: 0 5px;
     background: none;
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
 }
 .filter-menu input{
     flex: 1;

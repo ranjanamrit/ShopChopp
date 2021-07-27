@@ -3,13 +3,19 @@
     overflow: hidden;
     height: 500px;
     padding: 15px;
-    box-shadow: 0 0 15px #ddd;
     margin: 10px 0;
     position: relative;
     transition: transform 1s;
+    color: white;
+    border: 1px solid;
+    border-width: 2px;
+    border-image-slice: 1;
+    border-style: solid;
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+  
 }
 .product-card:hover{
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 .product-card img{
     width: 100%;
@@ -18,15 +24,17 @@
     object-fit: cover;
 }
 .product-box h2{
+    font-family: 'Montserrat', sans-serif;
     width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     text-transform: capitalize;
     cursor: pointer;
-    color: #323232;
+    color: #ffffff;
 }
 .product-card span{
+    font-family: 'Montserrat', sans-serif;
     color: crimson;
 }
 .product-box p{
@@ -36,7 +44,8 @@
     -webkit-line-clamp: 3;
     height: 70px;
     overflow: hidden;
-    color: #323232;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
 }
 .row-btn{
     width: 100%;
@@ -49,19 +58,57 @@
     text-align: center;
     text-transform: uppercase;
     color: white;
-    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
     letter-spacing: 2px;
     padding: 6px;
+    border-radius: 5px;
+}
+.row-btn a:hover{
+letter-spacing: .4rem;
 }
 
 #btn-buy{
-    background: #555;
+    /* background: #555; */
     margin-right: 5px;
+  background-image: linear-gradient(90deg,#743ad5, #d53a9d 100%);
+  border-radius:5px;
 }
+#btn-buy:after {
+    content:attr(alt);
+    width:20vw;
+    height:8vw;
+    background-color:#191919;
+  }
+#btn-buy:hover {
+    animation:slidebg 2s linear infinite;
+  }
+  
+  @keyframes slidebg {
+    to {
+      background-position:20vw;
+    }
+  }
 #btn-view{
-    background: teal;
+    /* background: teal; */
     margin-right: 5px;
-}
+    background-image: linear-gradient(90deg,#743ad5, #d53a9d 100%);
+    border-radius:5px;
+  }
+  #btn-view:after {
+      content:attr(alt);
+      width:20vw;
+      height:8vw;
+      background-color:#191919;
+    }
+  #btn-view:hover {
+      animation:slidebg 2s linear infinite;
+    }
+    
+    @keyframes slidebg {
+      to {
+        background-position:20vw;
+      }
+    }
 .product-card input{
     position: absolute;
     width: 20px;

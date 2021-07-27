@@ -22,7 +22,7 @@ header .logo span {
 header a{
     text-transform: uppercase;
     color: #ffffff;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Montserrat', sans-serif;
 }
 header ul li{
     display: inline-block;
@@ -34,10 +34,14 @@ header ul li:hover{
 }
 .menu{
     display: none;
+    color: #ffffff;
 }
 .cart-icon{
     position: relative;
     margin-right: 20px;
+}
+.cart-icon a img{
+    color: white;
 }
 .cart-icon span{
     background: crimson;
