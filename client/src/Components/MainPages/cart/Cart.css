@@ -1,7 +1,11 @@
 .cart{
     position: relative;
-    border: 1px solid #ccc;
-    transform: scaleY(0.98);   
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+    transform: scaleY(0.98);
+       
 }
 .amount span{
     color: crimson;
@@ -10,8 +14,12 @@
 .amount button{
     width: 40px;
     height: 40px;
-    border: 1px solid #777;
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
     font-size: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
 }
 .delete{
     position: absolute;
@@ -29,6 +37,6 @@
     justify-content: space-between;
 }
 .total h3{
-    color: crimson;
-    
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
 }
